@@ -7,13 +7,15 @@ const Navbar = () => {
       <div className="navbar bg-base-100">
         <div className="flex-1">
           <a className="btn btn-ghost normal-case text-xl">
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full -mr-6">
+            <label tabIndex={0} className=" btn-ghost avatar">
+              <div className="w-10 -mr-2">
                 <img src={Img} />
               </div>
             </label>
-            MunchCraft</a>
+            MunchCraft
+          </a>
         </div>
+
         <div className="flex-none">
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle">
@@ -50,6 +52,7 @@ const Navbar = () => {
               </div>
             </div>
           </div>
+
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
@@ -74,8 +77,11 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
+
         </div>
       </div>
+
+      
     </div>
   );
 };
