@@ -1,0 +1,157 @@
+/* Custom styles for the About Us page */
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    content: "";
+    clear: both;
+    display: table;
+    padding: 0 16px;
+  }
+
+  h1{
+    color: rgb(129, 129, 129);
+    text-align: center;
+    margin-top: auto;
+  }
+
+  .column {
+    float: left;
+    width: 25%;
+  
+    margin-bottom: 16px;
+    padding: 0 8px;
+  }
+
+
+  
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 8px;
+  }
+  
+  
+  h2 {
+    color: #4caf50;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  /* src/App.css */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
+}
+
+.App {
+  text-align: center;
+  padding: 50px;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 2em;
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1.2em;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color:black;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+  
+
+
+/**
+
+<h2>Our Team</h2>
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <div class="container">
+        <h2>Pravat</h2>
+        <p class="title">Team Member</p>
+        <p>BE Information Technology,Under Graduate</p>
+        <p>Pravat@gmail.com</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="card">
+      <div class="container">
+      <h2>Norbu Delma</h2>
+        <p class="title">Team Member</p>
+        <p>BE Information Technology,Under Graduate</p>
+        <p>Norbu@gmail.com</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="card">
+      <div class="container">
+      <h2>Tenzin Wangchuk</h2>
+        <p class="title">Team Member</p>
+        <p>BE Information Technology,Under Graduate</p>
+        <p>Tenzin@gmail.com</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="card">
+      <div class="container">
+      <h2>Kuenznag Dema</h2>
+        <p class="title">Team Member</p>
+        <p>BE Information Technology,Under Graduate</p>
+        <p>Kuenzang@gmail.com</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+</div>
+**/

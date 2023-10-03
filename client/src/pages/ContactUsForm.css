@@ -1,0 +1,35 @@
+/* Additional custom styles for the Contact Us form */
+
+.contact-form-container {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .bg-gradient-to-r {
+    background: linear-gradient(to right, #667eea, #efeff0);
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .submit-button {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: #ff5252;
+  }
+  
