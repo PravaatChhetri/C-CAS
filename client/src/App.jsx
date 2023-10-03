@@ -24,27 +24,27 @@ function App() {
       
       <Router>
         <Routes>
-          <Route path="/" element={
+          <Route exact path="/" element={
              <Layout>
              <HomePage/>
              </Layout>
           } />
-          <Route exact path="/aboutus" element={
+          <Route path="/aboutus" element={
             <Layout>
             <AboutUs/>
             </Layout>
           }/>
-          <Route exact path="/contactus" element={
+          <Route path="/contactus" element={
             <Layout>
             <ContactUs/>
             </Layout>
           }/>
-          <Route exact path="/login" element={
+          <Route path="/login" element={
             <Layout>
             <Login/>
             </Layout>
           }/>
-          <Route exact path="/menu" element={
+          <Route path="/menu" element={
             <Layout>
             <Menu/>
             </Layout>
@@ -54,5 +54,6 @@ function App() {
     
     </div>  );
 }
+
 
 export default App;
