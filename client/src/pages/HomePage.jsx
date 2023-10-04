@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Food from "../assets/Food.png";
 import FoodCard from "../components/FoodCard";
 import Chowmein from "../assets/ChickenChowmein.jpg";
 import BFood from "../assets/food1.jpeg";
 
 const HomePage = () => {
+  const Navigate = useNavigate();
   const foodStyle = {
     backgroundImage: `url(${Food})`,
     backgroundPosition: "bottom",
@@ -27,8 +29,6 @@ const HomePage = () => {
     };
   }, []);
 
-
-
   return (
     <div>
       <div className="hero h-screen w-[100vw] bg-base-200 flex md:flex-row flex-col justify-evenly">
@@ -40,7 +40,7 @@ const HomePage = () => {
             Craft
           </h1>
           <p className="text-2xl text-center">A new way to order food</p>
-          <button className="btn btn-primary w-[150px] mt-[50px] mx-auto ">
+          <button onClick={()=>{Navigate("/menu")}} className="btn btn-primary w-[150px] mt-[50px] mx-auto ">
             Order Now
           </button>
         </div>
@@ -87,49 +87,49 @@ const HomePage = () => {
 
         {/* Text */}
         <div className="absolute flex flex-col justify-center items-center top-0 left lg:left-1/2 w-full lg:w-1/2 h-full p-4 bg-black lg:bg-accent opacity-70 lg:opacity-100">
-        <h1 className="text-5xl text-white font-bold mb-4">
+          <h1 className="text-5xl text-white font-bold mb-4">
             Nutritious and Delicious Meals
           </h1>
           <p className="text-white font-sans text-2xl text-center px-[50px]">
-            Meals with balance of nutrition and taste to keep you healthy and happy.
+            Meals with balance of nutrition and taste to keep you healthy and
+            happy.
           </p>
         </div>
       </div>
 
-    
-          
-<div className="relative">
-      {/* Image */}
-      <img
-        src={BFood}
-        alt="Canteen Image"
-        className="w-full lg:w-1/2 h-auto lg:absolute top-0 right-0"
-      />
+      <div className="relative">
+        {/* Image */}
+        <img
+          src={BFood}
+          alt="Canteen Image"
+          className="w-full lg:w-1/2 h-auto lg:absolute top-0 right-0"
+        />
 
-      {/* Text */}
-      <div
-        ref={textContainerRef}
-        className="flex flex-grow flex-col justify-center items-center absolute top-0 lg:relative w-full lg:w-1/2 p-8 bg-black lg:bg-accent opacity-70 lg:opacity-100"
-      >
-        <h1 className="text-5xl text-white font-bold mb-4">
-          Desserts and Drinks
-        </h1>
-        <p className="text-white text-2xl text-center">
-          Exquisite and delicious desserts and drinks to satisfy your sweet tooth.
-        </p>
+        {/* Text */}
+        <div
+          ref={textContainerRef}
+          className="flex flex-grow flex-col justify-center items-center absolute top-0 lg:relative w-full lg:w-1/2 p-8 bg-black lg:bg-accent opacity-70 lg:opacity-100"
+        >
+          <h1 className="text-5xl text-white font-bold mb-4">
+            Desserts and Drinks
+          </h1>
+          <p className="text-white text-2xl text-center">
+            Exquisite and delicious desserts and drinks to satisfy your sweet
+            tooth.
+          </p>
+        </div>
       </div>
-    </div>
       <div id="ContactUs" className="hero min-h-[500px] bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left w-[70vw]">
-            <h1 className="text-5xl lg:text-7xl font-bold text-center lg:text-left">Contact Us</h1>
-            <p className="py-6">
-              
-            </p>
+            <h1 className="text-5xl lg:text-7xl font-bold text-center lg:text-left">
+              Contact Us
+            </h1>
+            <p className="py-6"></p>
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <form className="card-body">
-            <div className="form-control">
+              <div className="form-control">
                 <label className="label">
                   <span className="label-text">Full Name</span>
                 </label>

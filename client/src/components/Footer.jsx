@@ -1,14 +1,17 @@
 import React from 'react'
 import {AiFillInstagram} from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+  const navigate = useNavigate();
   return (
     <>
-<footer className="footer footer-center p-10 bg-neutral text-white rounded bottom-0">
+<footer className=" mt-auto footer footer-center p-10 bg-neutral text-white rounded bottom-0">
   <nav className="grid grid-flow-col gap-4">
-    <a className="link link-hover">About us</a> 
-    <a className="link link-hover">Menu</a> 
-    <a className="link link-hover">Cart</a> 
+  <a onClick={()=>{navigate("/")}} className="link link-hover">Home</a> 
+    <a onClick={()=>{navigate("/aboutus")}} className="link link-hover">About Us</a> 
+    <a onClick={()=>{navigate("/menu")}} className="link link-hover">Menu</a> 
+    <a onClick={()=>{navigate("/my-cart")}} className="link link-hover">Cart</a> 
 
   </nav> 
   <nav>

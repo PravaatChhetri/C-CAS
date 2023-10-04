@@ -6,13 +6,16 @@ const Container = styled.div`
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  position: relative;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   overflow: hidden;
   width: 678px;
   max-width: 100%;
   min-height: 400px;
   margin: auto;
-  margin-top: 7%;
+
 `;
 
 const SignUpContainer = styled.div`
@@ -177,7 +180,7 @@ const Login = () => {
     <Container>
       <SignUpContainer signinIn={signIn}>
         <Form>
-          <Title>Create Account</Title>
+          <Title className="text-2xl">Create Account</Title>
           <Input type="text" placeholder="Name" />
           <Input type="email" placeholder="Email" />
           <Input type="password" placeholder="Password" />
@@ -187,7 +190,7 @@ const Login = () => {
 
       <SignInContainer signinIn={signIn}>
         <Form>
-          <Title>Sign In </Title>
+          <Title className="text-2xl">Sign In </Title>
           <Input type="email" placeholder="Email" />
           <Input type="password" placeholder="Password" />
           <Anchor href="#">Forgot your password?</Anchor>
@@ -209,8 +212,8 @@ const Login = () => {
 
           <RightOverLayPanel signinIn={signIn}>
             <ImageContent>
-              <img src={logo} alt="Logo" />
-              <Paragraph>Sign up to enjoy delicious food now!</Paragraph>
+              <img src={logo}  alt="Logo" />
+              <Paragraph className="font-medium">Sign up to enjoy delicious food now!</Paragraph>
             </ImageContent>
             {/* <Title>Hello Friends!</Title> */}
 

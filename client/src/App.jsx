@@ -40,6 +40,11 @@ function App() {
             <ContactUs/>
             </Layout>
           }/>
+           <Route exact path="/my-cart" element={
+            <Layout>
+            <AboutUs/>
+            </Layout>
+          }/>
           <Route exact path="/login" element={
             <Login/>
           }/>
@@ -47,6 +52,9 @@ function App() {
             <Layout>
             <Menu/>
             </Layout>
+          }/>
+           <Route exact path="/dashboard" element={
+            <Dashboard/>
           }/>
         </Routes>
       </Router>
