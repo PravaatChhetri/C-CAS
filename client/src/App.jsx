@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import ContactUs from "./pages/ContactUs";
 import Menu from "./pages/Menu";
-import Cart from "./pages/Cart";
+import Cart from "./pages/my-cart";
 
 import { BrowserRouter as Router, Route,Routes } from "react-router-dom";
 import "./index.css";
