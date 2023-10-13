@@ -5,6 +5,8 @@ import AboutUs from "./pages/AboutUs";
 import Login from "./pages/Login";
 import ContactUs from "./pages/ContactUs";
 import Menu from "./pages/Menu";
+import Cart from "./pages/Cart";
+
 import { BrowserRouter as Router, Route,Routes } from "react-router-dom";
 import "./index.css";
 
@@ -49,7 +51,12 @@ function App() {
             <Menu/>
             </Layout>
           }/>
-        </Routes>
+          <Route exact path="/my-cart" element={
+            <Layout>
+            <Cart/>
+            </Layout>
+          }/>
+          </Routes>
       </Router>
     
     </div>  );
