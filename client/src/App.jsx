@@ -2,6 +2,8 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage.jsx";
 import AboutUs from "./pages/AboutUs";
+import Dashboard from "./pages/Dashboard";
+import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import ContactUs from "./pages/ContactUs";
 import Menu from "./pages/Menu";
@@ -15,15 +17,14 @@ function Layout({ children }) {
     <>
      <Navbar/>
     {children}
+    <Footer/>
     </>
-   
   );
 }
 
 function App() {
   return (
     <div className="App">
-      
       <Router>
         <Routes>
           <Route path="/" element={
@@ -41,10 +42,13 @@ function App() {
             <ContactUs/>
             </Layout>
           }/>
-          <Route exact path="/login" element={
+           <Route exact path="/my-cart" element={
             <Layout>
-            <Login/>
+            <AboutUs/>
             </Layout>
+          }/>
+          <Route exact path="/login" element={
+            <Login/>
           }/>
           <Route exact path="/menu" element={
             <Layout>
@@ -57,9 +61,13 @@ function App() {
             </Layout>
           }/>
           </Routes>
+           <Route exact path="/dashboard" element={
+            <Dashboard/>
+          }/>
       </Router>
-    
-    </div>  );
+    </div>
+  );
 }
+
 
 export default App;
