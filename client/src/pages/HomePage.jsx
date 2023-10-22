@@ -97,18 +97,18 @@ const HomePage = () => {
         </div>
       </div>
 
-      <div className="relative">
+      <div className="relative" >
         {/* Image */}
         <img
           src={BFood}
           alt="Canteen Image"
-          className="w-full lg:w-1/2 h-auto lg:absolute top-0 right-0"
+          className="w-full h-full lg:w-1/2 lg:absolute top-0 right-0 "
         />
 
         {/* Text */}
         <div
           ref={textContainerRef}
-          className="flex flex-grow flex-col justify-center items-center absolute top-0 lg:relative w-full lg:w-1/2 p-8 bg-black lg:bg-accent opacity-70 lg:opacity-100"
+          className="flex flex-grow flex-col justify-center items-center absolute top-0 lg:relative w-full h-[35vh] lg:w-1/2 p-8 bg-black lg:bg-accent opacity-70 lg:opacity-100"
         >
           <h1 className="text-5xl text-white font-bold mb-4">
             Desserts and Drinks

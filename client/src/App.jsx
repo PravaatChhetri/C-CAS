@@ -7,8 +7,10 @@ import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import ContactUs from "./pages/ContactUs";
 import Menu from "./pages/Menu";
+import ErrorPages from "./pages/ErrorPages";
 import { BrowserRouter as Router, Route,Routes } from "react-router-dom";
 import "./index.css";
+
 
 function Layout({ children }) {
   return (
@@ -55,6 +57,9 @@ function App() {
           }/>
            <Route exact path="/dashboard" element={
             <Dashboard/>
+          }/>
+          <Route exact path="*" element={
+            <ErrorPages/>
           }/>
         </Routes>
       </Router>
