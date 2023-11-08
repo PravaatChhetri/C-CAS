@@ -4,6 +4,8 @@ import Food from "../assets/Food.png";
 import FoodCard from "../components/FoodCard";
 import Chowmein from "../assets/ChickenChowmein.jpg";
 import BFood from "../assets/food1.jpeg";
+import { data } from "autoprefixer";
+import axios from "axios";
 
 const HomePage = () => {
   const Navigate = useNavigate();
@@ -14,9 +16,26 @@ const HomePage = () => {
     backgroundRepeat: "no-repeat",
   };
   const [imageHeight, setImageHeight] = useState(null);
+  const [fullName, setFullName] = useState("");
+  const [Email, setEmail] = useState("");
+  const [Sub, setSub] = useState("");
+  const [Message, setMessage] = useState("");
+  const [menuItems, setMenuItems] = useState([]);
+
   const textContainerRef = useRef(null);
 
   useEffect(() => {
+    axios.get("http://localhost:8000/menu")
+    .then((response) => {
+      // Update the menuItems state with the retrieved data
+      const data=response.data.filter((item)=>item.approved_status==true);
+      setMenuItems([data[0],data[1],data[2]]);
+    })
+    .catch((error) => {
+      console.error("Error fetching menu items:", error);
+    });
+
+
     const img = new Image();
     img.src = BFood;
     img.onload = () => {
@@ -28,6 +47,31 @@ const HomePage = () => {
       }
     };
   }, []);
+
+  const submitForm = () => {
+    fetch("http://localhost:8000/feedbacks", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: fullName,
+        email: Email,
+        subject: Sub,
+        message: Message,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+        
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      })
+  };
+   
+  
 
   return (
     <div>
@@ -54,26 +98,16 @@ const HomePage = () => {
           Top's Specials{" "}
         </h1>
         <div className="flex justify-evenly mx-auto mb-5 flex-col md:flex-row md:flex-wrap gap-6">
-          <FoodCard
-            image={Chowmein}
-            data="Lunch"
-            price="100"
-            title="Chicken Chowmein"
-          />
 
+          {menuItems.map((item) => {
+            return(
           <FoodCard
-            image={Chowmein}
-            data="Lunch"
-            price="100"
-            title="Chicken Chowmein"
+            image={item.image}
+            data={item.category}
+            price={item.price}
+            title={item.name}
           />
-
-          <FoodCard
-            image={Chowmein}
-            data="Lunch"
-            price="100"
-            title="Chicken Chowmein"
-          />
+            )})}
         </div>
       </div>
 
@@ -97,18 +131,18 @@ const HomePage = () => {
         </div>
       </div>
 
-      <div className="relative">
+      <div className="relative" >
         {/* Image */}
         <img
           src={BFood}
           alt="Canteen Image"
-          className="w-full lg:w-1/2 h-auto lg:absolute top-0 right-0"
+          className="w-full h-full lg:w-1/2 lg:absolute top-0 right-0 "
         />
 
         {/* Text */}
         <div
           ref={textContainerRef}
-          className="flex flex-grow flex-col justify-center items-center absolute top-0 lg:relative w-full lg:w-1/2 p-8 bg-black lg:bg-accent opacity-70 lg:opacity-100"
+          className="flex flex-grow flex-col justify-center items-center absolute top-0 lg:relative w-full h-[20vh] lg:w-1/2 p-8 bg-black lg:bg-accent opacity-70 lg:opacity-100"
         >
           <h1 className="text-5xl text-white font-bold mb-4">
             Desserts and Drinks
@@ -119,16 +153,16 @@ const HomePage = () => {
           </p>
         </div>
       </div>
-      <div id="ContactUs" className="hero min-h-[500px] bg-base-200">
+      <div id="ContactUs" className="hero bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left w-[70vw]">
             <h1 className="text-5xl lg:text-7xl font-bold text-center lg:text-left">
               Contact Us
             </h1>
-            <p className="py-6"></p>
+            <p className="py-6 text-xl">Please feel free to provide feedback or get in touch with us.</p>
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form className="card-body">
+            <form className="card-body" onSubmit={submitForm}>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Full Name</span>
@@ -136,6 +170,8 @@ const HomePage = () => {
                 <input
                   type="text"
                   placeholder="Full Name"
+                  value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
                   className="input input-bordered"
                   required
                 />
@@ -147,23 +183,38 @@ const HomePage = () => {
                 <input
                   type="email"
                   placeholder="email"
+                  value={Email}
+                onChange={(e) => setEmail(e.target.value)}
                   className="input input-bordered"
                   required
                 />
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Message</span>
+                  <span className="label-text">Subject</span>
                 </label>
                 <input
-                  type="textarea"
-                  placeholder="Message"
+                  type="text"
+                  placeholder="Subject"
+                  value={Sub}
+                onChange={(e) => setSub(e.target.value)}
                   className="input input-bordered"
                   required
                 />
               </div>
+              <div className="form-control h-auto">
+                <label className="label">
+                  <span className="label-text">Message</span>
+                </label>
+                <textarea 
+                className="textarea textarea-bordered" 
+                placeholder="Message"
+                value={Message}
+                onChange={(e) => setMessage(e.target.value)}
+                ></textarea>
+              </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Submit</button>
+                <button className="btn btn-primary" type="submit">Submit</button>
               </div>
             </form>
           </div>

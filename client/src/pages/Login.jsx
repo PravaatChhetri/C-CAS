@@ -1,6 +1,9 @@
-import React from "react";
+import React,{useState} from "react";
 import logo from "../assets/CCASLogo.png"; // Adjust the relative path
 import styled from "styled-components";
+import axios from "axios";
+import bcrypt from "bcryptjs"; // Import bcrypt
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   background-color: #fff;
@@ -176,25 +179,108 @@ const ImageContent = styled.div`
 
 const Login = () => {
   const [signIn, toggle] = React.useState(true);
+  const [username, setUsername] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [hashedPassword, setHashedPassword] = useState("");
+  const [signInEmail, setSignInEmail] = React.useState("");
+  const [signInPassword, setSignInPassword] = React.useState("");
+  const [user, setUser] = useState(null);
+
+  const navigate = useNavigate();
+
+  
+  
+  // Store the hashed password
+  const handlePasswordHashing = async () => {
+    try {
+      const saltRounds = 10; // You can adjust this based on your requirements
+      const hashed = await bcrypt.hash(password, saltRounds);
+      setHashedPassword(hashed);
+    } catch (error) {
+      console.error("Error hashing password:", error);
+    }
+  };
+
+  const handleSignUp = async (e) => {
+    console.log("hashed password", hashedPassword);
+    e.preventDefault();
+    try {
+      // Make a POST request to the server to create a new user
+      const response = await axios.post("http://localhost:8000/users", {
+        name:username,
+        email,
+        role: "Student",
+        password:hashedPassword, // Store the hashed password
+      });
+      console.log("User created:", response.data);
+      alert("User created:", response.data);
+      if(response.data){
+        setUser(response.data);
+        // if (user.role === "Canteen Owner"){
+        //   navigate
+        // }
+        // else if (user.role === "College Admin"){
+        //   navigate.('/dashboard')
+        // }
+      }
+    } catch (error) {
+      console.error("Error creating user:", error);
+    }
+  }
+  
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+    try {
+      // Make a POST request to the server to log in the user
+      const response = await axios.post("http://localhost:8000/users/login", {
+        email: signInEmail,
+        password: signInPassword,
+      });
+      // When the user logs in
+localStorage.setItem("userRole", response.data.role);
+localStorage.setItem("userEmail", response.data.email);
+localStorage.setItem("userName", response.data.name);
+
+      alert(response.data.name+" logged in");
+      if(response.data.role==="Canteen Owner"){
+      navigate('/dashboard');}
+      else if(response.data.role==="Admin"){
+        navigate('/dashboard-admin');
+      }
+      else{
+        navigate('/dashboard-student');
+      }
+    } catch (error) {
+      console.error("Error logging in:", error);
+      alert("Error logging in:", error);
+    }
+  }
+
+
+
+
+
   return (
     <Container>
       <SignUpContainer signinIn={signIn}>
-        <Form>
+        <Form onSubmit={handleSignUp}>
           <Title className="text-2xl">Create Account</Title>
-          <Input type="text" placeholder="Name" />
-          <Input type="email" placeholder="Email" />
-          <Input type="password" placeholder="Password" />
-          <Button>Sign Up</Button>
+          <Input type="text" value={username} onChange={(e)=>{setUsername(e.target.value)}} placeholder="Name" />
+          <Input type="email" value={email} onChange={(e)=>{setEmail(e.target.value)}} placeholder="Email" />
+          <Input type="password" value={password} onChange={(e)=>{setPassword(e.target.value);handlePasswordHashing();
+}} placeholder="Password" />
+          <Button type="submit">Sign Up</Button>
         </Form>
       </SignUpContainer>
 
       <SignInContainer signinIn={signIn}>
-        <Form>
+        <Form onSubmit={handleSignIn}>
           <Title className="text-2xl">Sign In </Title>
-          <Input type="email" placeholder="Email" />
-          <Input type="password" placeholder="Password" />
+          <Input type="email" value={signInEmail} onChange={(e)=>{setSignInEmail(e.target.value)}} placeholder="Email" />
+          <Input type="password" value={signInPassword} onChange={(e)=>{setSignInPassword(e.target.value)}} placeholder="Password" />
           <Anchor href="#">Forgot your password?</Anchor>
-          <Button>Sign In</Button>
+          <Button type="submit">Sign In</Button>
         </Form>
       </SignInContainer>
 
