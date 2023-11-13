@@ -12,9 +12,9 @@ export const AboutUs = () => {
         <h1 className="text-black font-bold text-5xl text-center mb-[100px]">About Us </h1>
 
         <div className="w-[90%] ">
-          <header className="bg-secondary text-white py-3 px-3 flex w-[100%]">
-            <div className="w-[50%] py-[40px] pl-10">
-              <h1 className=" text-white font-medium text-[30px] mb-3">
+          <header className="bg-secondary text-white py-3 flex md:flex-row flex-col-reverse w-[100%]">
+            <div className="w-[90%] md:w-[50%] py-[40px] pl-10">
+              <h1 className=" text-white font-bold text-2xl lg:text-[30px] mb-3">
                 Welcome to MunchCraft: Where Flavor Meets Craftsmanship
               </h1>
               <p className="text-[1.25rem] font-light">
@@ -42,14 +42,14 @@ export const AboutUs = () => {
               </p>
             </div>
             <div className="w-[50%]">
-              <img className="w-[100%] my-auto pl-[80px]" src={food} />
+              <img className="w-[100%] min-w-[300px] my-auto pl-[80px]" src={food} />
             </div>
           </header>
         </div>
       </div>
       <h1 className="text-6xl font-semibold font-secondary text-center mt-20 mb-10">Our Team</h1>
 
-      <div className="grid grid-cols-3 mx-auto gap-4 py-10 justify-items-center w-[80%]">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto gap-4 py-10 justify-items-center w-[80%]">
         <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <div class="flex justify-end px-4 pt-4">
             <button

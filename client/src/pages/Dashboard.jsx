@@ -1,4 +1,5 @@
-import {useState} from "react";
+import {useState,useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 import User from "../components/DashComponents/User";
 import CustomerOrder from "../components/DashComponents/CustomerOrder";
 import SalesTransaction from "../components/DashComponents/SalesTransaction";
@@ -8,8 +9,24 @@ import InventoryManagement from "../components/DashComponents/InventoryManagemen
 import logo from "../assets/CCAS.png"
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const Dash=[<User/>,<MenuManagement/>,<InventoryManagement/>,<SalesTransaction/>,<CustomerOrder/>,<Feedback/>];
   const [currentDash, setCurrentDash] = useState(<User/>);
+  const userName = localStorage.getItem("userName");
+  const [user,setUser]=useState("User");
+  
+  const logOut=()=>{
+    localStorage.removeItem("userRole");
+    localStorage.removeItem("userEmail");
+    localStorage.removeItem("userName");
+    alert("You Logged Out from the dashboard");
+    navigate("/"); }
+
+  useEffect(() => {
+    const userName = localStorage.getItem("userName");
+    setUser(userName);
+  },[]);
+  
 
   return (
     <div className="drawer lg:drawer-open">
@@ -41,13 +58,14 @@ const Dashboard = () => {
               </div>
             </label>
             MunchCraft</a></li>
+      <li className="text-lg font-medium text-left pl-4">Welcome, {userName}</li>
       <li className="text-lg font-medium "><a onClick={()=>{setCurrentDash(Dash[0])}}>Users</a></li>
       <li className="text-lg font-medium "><a onClick={()=>{setCurrentDash(Dash[1])}}>Menu Management</a></li>
       <li className="text-lg font-medium "><a onClick={()=>{setCurrentDash(Dash[2])}}>Inventory Management</a></li>
-      <li className="text-lg font-medium "><a onClick={()=>{setCurrentDash(Dash[3])}}>Sales and Transaction</a></li>
+      <li className="text-lg font-medium "><a onClick={()=>{setCurrentDash(Dash[3])}}>Sales and Analytics</a></li>
       <li className="text-lg font-medium "><a onClick={()=>{setCurrentDash(Dash[4])}}>Customer Orders</a></li>
       <li className="text-lg font-medium "><a onClick={()=>{setCurrentDash(Dash[5])}}>Feedback</a></li>
-      <li className="text-lg font-medium absolute bottom-5 "><a>Log Out</a></li>
+      <li className="text-lg font-medium absolute bottom-5 "><a onClick={()=>{logOut()}}>Log Out</a></li>
     </ul>
   
   </div>

@@ -3,14 +3,17 @@ import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage.jsx";
 import AboutUs from "./pages/AboutUs";
 import Dashboard from "./pages/Dashboard";
+import DashboardAdmin from "./pages/DashboardAdmin";
+import DashboardStudent from "./pages/DashboardStudent";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
+import Cart from "./pages/Cart";
 import ContactUs from "./pages/ContactUs";
 import Menu from "./pages/Menu";
-import Cart from "./pages/my-cart";
-
+import ErrorPages from "./pages/ErrorPages";
 import { BrowserRouter as Router, Route,Routes } from "react-router-dom";
 import "./index.css";
+
 
 function Layout({ children }) {
   return (
@@ -44,7 +47,7 @@ function App() {
           }/>
            <Route exact path="/my-cart" element={
             <Layout>
-            <AboutUs/>
+            <Cart/>
             </Layout>
           }/>
           <Route exact path="/login" element={
@@ -55,15 +58,21 @@ function App() {
             <Menu/>
             </Layout>
           }/>
-          <Route exact path="/my-cart" element={
-            <Layout>
-            <Cart/>
-            </Layout>
-          }/>
-          </Routes>
            <Route exact path="/dashboard" element={
             <Dashboard/>
           }/>
+           <Route exact path="/dashboard-admin" element={
+            <DashboardAdmin/>
+          }/>
+          <Route exact path="/dashboard-student" element={
+            <DashboardStudent/>
+          }/>
+          
+          <Route exact path="*" element={
+            <ErrorPages/>
+          }/>
+          </Routes>
+
       </Router>
     </div>
   );
