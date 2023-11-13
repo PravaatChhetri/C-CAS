@@ -217,12 +217,6 @@ const Login = () => {
       alert("User created:", response.data);
       if(response.data){
         setUser(response.data);
-        // if (user.role === "Canteen Owner"){
-        //   navigate
-        // }
-        // else if (user.role === "College Admin"){
-        //   navigate.('/dashboard')
-        // }
       }
     } catch (error) {
       console.error("Error creating user:", error);
@@ -262,7 +256,7 @@ localStorage.setItem("userName", response.data.name);
 
 
   return (
-    <Container>
+    <Container >
       <SignUpContainer signinIn={signIn}>
         <Form onSubmit={handleSignUp}>
           <Title className="text-2xl">Create Account</Title>

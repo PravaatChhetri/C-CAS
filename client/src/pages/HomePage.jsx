@@ -4,7 +4,6 @@ import Food from "../assets/Food.png";
 import FoodCard from "../components/FoodCard";
 import Chowmein from "../assets/ChickenChowmein.jpg";
 import BFood from "../assets/food1.jpeg";
-import { data } from "autoprefixer";
 import axios from "axios";
 
 const HomePage = () => {
@@ -142,7 +141,7 @@ const HomePage = () => {
         {/* Text */}
         <div
           ref={textContainerRef}
-          className="flex flex-grow flex-col justify-center items-center absolute top-0 lg:relative w-full h-[20vh] lg:w-1/2 p-8 bg-black lg:bg-accent opacity-70 lg:opacity-100"
+          className="flex flex-grow flex-col justify-center items-center absolute top-0 lg:relative w-full h-[200px] md:h-[100%] lg:w-1/2 p-8 bg-black lg:bg-accent opacity-70 lg:opacity-100 "
         >
           <h1 className="text-5xl text-white font-bold mb-4">
             Desserts and Drinks
