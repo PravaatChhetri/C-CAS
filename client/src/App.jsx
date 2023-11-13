@@ -3,8 +3,11 @@ import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage.jsx";
 import AboutUs from "./pages/AboutUs";
 import Dashboard from "./pages/Dashboard";
+import DashboardAdmin from "./pages/DashboardAdmin";
+import DashboardStudent from "./pages/DashboardStudent";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
+import Cart from "./pages/Cart";
 import ContactUs from "./pages/ContactUs";
 import Menu from "./pages/Menu";
 import ErrorPages from "./pages/ErrorPages";
@@ -44,7 +47,7 @@ function App() {
           }/>
            <Route exact path="/my-cart" element={
             <Layout>
-            <AboutUs/>
+            <Cart/>
             </Layout>
           }/>
           <Route exact path="/login" element={
@@ -58,10 +61,18 @@ function App() {
            <Route exact path="/dashboard" element={
             <Dashboard/>
           }/>
+           <Route exact path="/dashboard-admin" element={
+            <DashboardAdmin/>
+          }/>
+          <Route exact path="/dashboard-student" element={
+            <DashboardStudent/>
+          }/>
+          
           <Route exact path="*" element={
             <ErrorPages/>
           }/>
-        </Routes>
+          </Routes>
+
       </Router>
     </div>
   );

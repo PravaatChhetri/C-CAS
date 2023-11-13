@@ -1,93 +1,81 @@
-import React from 'react'
+import {useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Feedback = () => {
+  const navigate = useNavigate();
+
+  const [feedback, setFeedback] = useState([]);
+  useEffect(() => {
+    // Make a GET request to retrieve menu items from your server
+    axios.get("http://localhost:8000/feedbacks")
+      .then((response) => {
+        // Update the menuItems state with the retrieved data
+        setFeedback(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching items:", error);
+      });
+  }, []);
+
+  const feedbackDelete = async(id) => {
+    axios.delete(`http://localhost:8000/feedbacks/${id}`)
+    .then((response) => {
+      // Handle the successful deletion
+      console.log("Feedback Deleted:", response.data);
+
+
+    })
+    .catch((error) => {
+      // Handle errors, such as server errors or item not found
+      console.error("Error Deleting Feedback:", error);
+    });
+  }
+  
+  
+
   return (
     <div className="flex flex-col justify-start h-screen w-full items-start pl-5 pt-5 gap-3">
-    <h1 className="text-4xl font-medium ">Menu Management</h1>
+    <h1 className="text-4xl font-medium ">Feedback</h1>
     <div className="overflow-x-auto">
       <table className="table">
         {/* head */}
         <thead>
         <tr>
-            <th></th>
-            <th>Suggestion</th>
-            <th>Description</th>
-            <th>Rating</th>
+            <th>Subject</th>
+            <th>Message</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          {/* row 1 */}
+      {feedback.map((feed)=>{
+        return(
           <tr>
-            <th>
-              <label>
-                <input type="checkbox" className="checkbox" />
-              </label>
-            </th>
-            <td>
-              <div className="flex items-center space-x-3">
-                {/* <div className="avatar placeholder">
-                  <div className="bg-neutral-focus text-neutral-content rounded-full w-10">
-                    <span className="text-xl">HH</span>
-                  </div>
-                </div> */}
-                <div>
-                  <div className="font-bold">Cleanliness to be maintained </div>
-                  {/* <div className="text-sm opacity-50">CST</div> */}
-                </div>
+            
+          <td>
+            <div className="flex items-center space-x-3">
+              <div>
+                <div className="font-bold">{feed.subject}</div>
+                
               </div>
-            </td>
-            <td>
-              We need clean canteen for have more appetizing food
-              
-            </td>
-            <td>3.5/5</td>
-            <th>
-              <button className="btn btn-ghost btn-xs">remove</button>
-            </th>
-          </tr>
-          <tr>
-            <th>
-              <label>
-                <input type="checkbox" className="checkbox" />
-              </label>
-            </th>
-            <td>
-              <div className="flex items-center space-x-3">
-                {/* <div className="avatar placeholder">
-                  <div className="bg-neutral-focus text-neutral-content rounded-full w-10">
-                    <span className="text-xl">HH</span>
-                  </div>
-                </div> */}
-                <div>
-                  <div className="font-bold">Expensive Pricing</div>
-                  {/* <div className="text-sm opacity-50">CST</div> */}
-                </div>
-              </div>
-            </td>
-            <td>
-              The pricing of the goods are too high for students. 
-              
-            </td>
-            <td>1/5</td>
-            <th>
-              <button className="btn btn-ghost btn-xs">remove</button>
-            </th>
-          </tr>
+            </div>
+          </td>
+          <td>
+            {feed.message} 
+            
+          </td>
+          <th>
+            <button className="btn btn-ghost btn-xs" onClick={()=>{feedbackDelete(feed._id)}}>remove</button>
+          </th>
+        </tr>
+        );
+      })}
+         
 
          
        
         </tbody>
-        {/* foot */}
-        <tfoot>
-          <tr>
-            <th></th>
-            <th>Suggestion</th>
-            <th>Description</th>
-            <th>Rating</th>
-            <th></th>
-          </tr>
-        </tfoot>
+       
       </table>
     </div>
   </div> 
